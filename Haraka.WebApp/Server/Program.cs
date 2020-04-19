@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Haraka.Web
+namespace Haraka.WebApp.Server
 {
     public class Program
     {
@@ -21,8 +21,8 @@ namespace Haraka.Web
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder
-                    .UseStartup<Startup>()
-                    .UseKestrel();
+                        .UseStartup<Startup>()
+                        .UseKestrel();
                 });
     }
 }
