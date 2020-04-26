@@ -1,15 +1,16 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="sidebar">
-    <NavMenu />
-</div>
+<NavMenu />
 
+
+<!-- Page Content -->
 <div class="main">
-    <div class="top-row px-4">
-        <a href="http://blazor.net" target="_blank" class="ml-md-auto">About</a>
-    </div>
-
-    <div class="content px-4">
+    <div id="main-content" class="content">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <button class="openbtn" onclick="openNav()">&#9776; Open Sidebar</button>
+            </div>
+        </nav>
         @Body
     </div>
 </div>
