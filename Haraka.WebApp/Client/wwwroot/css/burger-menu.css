@@ -1,30 +1,41 @@
 /* The sidebar menu */
 .sidebar {
   height: 100%; /* 100% Full-height */
-  width: 0; /* 0 width - change this with JavaScript */
+  width: 250px; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
   z-index: 1; /* Stay on top */
   top: 0;
   left: 0;
   background-color: #111; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
+  padding-top: 1.1rem; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+}
+
+.sidebar.not-active{
+  width: 64px;
 }
 
 /* The sidebar links */
 .sidebar a {
-  padding: 8px 8px 8px 32px;
+  padding: 8px 8px 8px 16px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
-  display: block;
+  color: #fff;
+  display: flex;
   transition: 0.3s;
+}
+
+.sidebar a i{
+  margin-right: 1.1rem;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
 }
 
 /* When you mouse over the navigation links, change their color */
 .sidebar a:hover {
-  color: #f1f1f1;
+  color: #818181;
 }
 
 /* Position and style the close button (top right corner) */
@@ -36,34 +47,18 @@
   margin-left: 50px;
 }
 
-/* The button used to open the sidebar */
-.openbtn {
-  font-size: 20px;
-  cursor: pointer;
-  background-color: #111;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-}
-
-.openbtn:hover {
-  background-color: #444;
-}
-
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
   transition: margin-left 0.5s; /* If you want a transition effect */
   padding: 20px;
 }
 
-label.hamburg {
-  display: block;
-  width: 75px;
-  height: 50px;
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 4px;
+.main.content{
+  margin-left: 250px;
+ }
+
+.main.content.full{
+  margin-left: 50px;
 }
 
 input#hamburg {
@@ -73,7 +68,7 @@ input#hamburg {
 .line {
   left: 10px;
   height: 4px;
-  width: 33px;
+  width: 32px;
   margin-bottom: 5px;
   background: #fff;
   border-radius: 2px;
@@ -90,6 +85,10 @@ input#hamburg {
 }
 .line:nth-child(3) {
   top: 36px;
+}
+
+.toggle-menu{
+  margin-left: 16px;
 }
 
 #hamburg:checked + .hamburg .line:nth-child(1) {

@@ -8,15 +8,10 @@ namespace Haraka.Runtime
 {
     public static class GameService
     {
-        public static void Simulate(Simulation simulation, TimeSpan tickTime)
-            => Observable.Create<int>((observer, token) => Task.Run(async () =>
-            {
-                while (true)
-                {
-                    simulation.Tick();
-                    await Task.Delay(tickTime, token);
-                    observer.OnNext(0);
-                }
-            }, token));
+        public static IObservable<long> Simulate(Simulation simulation, TimeSpan tickTime)
+            => Observable
+                .Interval(tickTime)
+                .Do(simulation.Tick);
+
     }
 }
