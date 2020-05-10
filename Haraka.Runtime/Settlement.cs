@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Haraka.Runtime.Jobs;
+using System;
 using System.Collections.Generic;
 
 namespace Haraka.Runtime

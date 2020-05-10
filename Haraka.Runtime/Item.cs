@@ -4,8 +4,7 @@ using System.Text;
 
 namespace Haraka.Runtime
 {
-    public class Job
+    public class Item
     {
-        internal void Execute() => throw new NotImplementedException();
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Haraka.Runtime.Resources;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -15,5 +16,7 @@ namespace Haraka.Runtime
         {
 
         }
+
+        internal int GetResourceFactor(ResourceDefinition resourceDefinition) => throw new NotImplementedException();
     }
 }
