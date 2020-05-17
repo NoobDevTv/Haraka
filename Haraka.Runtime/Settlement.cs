@@ -1,4 +1,5 @@
 ﻿using Haraka.Runtime.Jobs;
+using Haraka.Runtime.Resources;
 using System;
 using System.Collections.Generic;
 
@@ -14,18 +15,29 @@ namespace Haraka.Runtime
 
         public List<Job> Jobs { get;  }
 
+        public Dictionary<ResourceDefinition, int> StockPile { get; }
+
         public Settlement()
         {
             Villagers = new List<Villager>();
             Jobs = new List<Job>();
+            StockPile = new Dictionary<ResourceDefinition, int>();
         }
 
         internal void SimulateTick(DayTime dayTime)
         {
             foreach (var job in Jobs)
             {
-                job.Execute();
+                job.Execute(this);
             }
+        }
+
+        internal void AddResource(ResourceDefinition resourceDefinition, int sum)
+        {
+            if (StockPile.ContainsKey(resourceDefinition))
+                StockPile[resourceDefinition] += sum;
+            else
+                StockPile.Add(resourceDefinition, sum);
         }
     }
 }

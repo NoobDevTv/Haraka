@@ -17,6 +17,7 @@ namespace Haraka.Runtime
 
         }
 
-        internal int GetResourceFactor(ResourceDefinition resourceDefinition) => throw new NotImplementedException();
+        internal int GetResourceFactor(ResourceDefinition resourceDefinition)
+            => 1;
     }
 }

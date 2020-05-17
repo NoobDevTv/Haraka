@@ -18,35 +18,41 @@ namespace Haraka.Runtime.Jobs
 
         public CollectJob(ResourceSource source)
         {
-            Resource = source;
+            Resource = source ?? throw new ArgumentNullException(nameof(source));
+            Limit = source.Amount;
+            //Tick += Distance / 3;
         }
 
-        public override void Execute()
+        public CollectJob(ResourceSource source, int limit) : this(source)
+            => Limit = limit;
+
+        public override void Execute(Settlement settlement)
         {
             if (!CanExecute())
+            {
                 Cancel();
+                return;
+            }
 
             TickCount++;
 
             if (Tick % TickCount != 0)
                 return;
 
-            
+            var sum = AssignedVillagers
+                    .Sum(v =>
+                    {
+                        var collect = Resource.Collect(v, Limit - collected);
+                        collected += collect;
+                        return collect;
+                    });
 
-            AssignedVillagers
-                .Sum(v =>
-                {
-                    var collect = Resource.Collect(v, Limit - collected);
-                    collected += collect;
-                    return collect;
-                });
-
-            //Target?
+            settlement?.AddResource(Resource.ResourceDefinition, sum);
         }
 
         public override bool CanExecute()
         {
-            if (Resource.IsEmpty || LimitReached)
+            if (Resource.IsEmpty || (LimitReached && !Permanent))
                 return false;
 
 

@@ -6,11 +6,16 @@ namespace Haraka.Runtime.Resources
 {
     public class ResourceSource
     {
-        ResourceDefinition ResourceDefinition { get; set; }
-
-        public bool IsEmpty => Amount < 1;
+        public ResourceDefinition ResourceDefinition { get; set; }
 
         public int Amount { get; set; }
+        public bool IsEmpty => Amount < 1;
+
+        public ResourceSource(ResourceDefinition resourceDefinition, int amount)
+        {
+            ResourceDefinition = resourceDefinition;
+            Amount = amount;
+        }
 
         internal int Collect(Villager villager, int maxValue)
         {

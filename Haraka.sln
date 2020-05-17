@@ -7,13 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haraka.Runtime", "Haraka.Ru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haraka.Core", "Haraka.Core\Haraka.Core.csproj", "{7B74AB30-4257-40E8-A33A-EC19120475FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haraka.WebApp.Server", "Haraka.WebApp\Server\Haraka.WebApp.Server.csproj", "{C1FC52D8-0DA8-45BE-9043-D2661D30B76C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haraka.WebApp.Server", "Haraka.WebApp\Server\Haraka.WebApp.Server.csproj", "{C1FC52D8-0DA8-45BE-9043-D2661D30B76C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haraka.WebApp.Client", "Haraka.WebApp\Client\Haraka.WebApp.Client.csproj", "{DDA279BC-BDA5-4B32-A791-C65B8F3EDABC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haraka.WebApp.Client", "Haraka.WebApp\Client\Haraka.WebApp.Client.csproj", "{DDA279BC-BDA5-4B32-A791-C65B8F3EDABC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haraka.WebApp.Shared", "Haraka.WebApp\Shared\Haraka.WebApp.Shared.csproj", "{1DF791D5-06D4-407C-B423-A1A7B8C88616}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haraka.WebApp.Shared", "Haraka.WebApp\Shared\Haraka.WebApp.Shared.csproj", "{1DF791D5-06D4-407C-B423-A1A7B8C88616}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Haraka.WebApp", "Haraka.WebApp", "{BD07DC59-35B1-409B-860E-9EF22F655223}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haraka.Runtime.Test", "Haraka.Runtime.Test\Haraka.Runtime.Test.csproj", "{FD507809-7B1D-496F-920F-524546CB925C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{1DF791D5-06D4-407C-B423-A1A7B8C88616}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DF791D5-06D4-407C-B423-A1A7B8C88616}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DF791D5-06D4-407C-B423-A1A7B8C88616}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD507809-7B1D-496F-920F-524546CB925C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD507809-7B1D-496F-920F-524546CB925C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD507809-7B1D-496F-920F-524546CB925C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD507809-7B1D-496F-920F-524546CB925C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

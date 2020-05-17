@@ -20,7 +20,7 @@ namespace Haraka.Runtime.Jobs
             AssignedVillagers = new List<Villager>();
         }
 
-        public abstract void Execute();
+        public abstract void Execute(Settlement settlement);
 
         public abstract bool CanExecute();
 
