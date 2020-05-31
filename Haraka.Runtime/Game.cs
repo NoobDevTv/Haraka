@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Haraka.Core;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Haraka.Runtime
 {
-    public class Settings
+    public class Game : IdEntity
     {
         public World World { get; set; }
         public TimeSpan TickTime { get; set; }

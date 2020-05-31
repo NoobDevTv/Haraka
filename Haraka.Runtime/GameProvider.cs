@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Haraka.Runtime
 {
-    public static class GameService
+    public static class GameProvider
     {
         public static IObservable<long> Simulate(Simulation simulation, TimeSpan tickTime)
             => Observable
@@ -19,7 +19,7 @@ namespace Haraka.Runtime
              => Observable.Create<long>(observer =>
              {
                  var observables = DataService
-                     .GetSettings()
+                     .GetGames()
                      .Select(s => Simulate(new Simulation(s.World), s.TickTime));
 
                  return Observable

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Haraka.Core;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Haraka.Runtime.Jobs
 {
-    public abstract class Job
+    public abstract class Job : IdEntity
     {
         public int MaxVillagers { get; set; }
         public bool Permanent { get; protected set; }

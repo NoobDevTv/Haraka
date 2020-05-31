@@ -39,5 +39,10 @@ namespace Haraka.Runtime
             else
                 StockPile.Add(resourceDefinition, sum);
         }
+
+        internal void AddJobs(params Job[] jobs)
+        {
+            Jobs.AddRange(jobs);
+        }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Haraka.Runtime.Jobs;
 using Haraka.Runtime.Resources;
-using Microsoft.VisualStudio.TestPlatform.CrossPlatEngine.Discovery;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
