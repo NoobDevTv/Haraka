@@ -18,8 +18,20 @@ Braucht 3 Ticks, jeder Tick weniger Arbeitskraft
 Jede Frau *(2-3%?)% Change auf Schwangerschaft (64 Ticks insgesamt)
 
 
-Jobs:
+Sechseck größe:
+20 x 20 m = Realgröße pro Sechseck auf Siedlungskarte
+4 * 4 km Map größe pro Siedlung
 
+Überlegungen:
+Umziehen des eigenen Volkes innerhalb der eigenen Map
+Hexagons müssen nicht befüllt sein mit Ressource oder Sinnvollem
+Mehrere Settlements pro Person möglich
+Ressourcen pro Settlement
+Auf Weltkarte Infos über Settlement auf rechter Seite, keine ressourcen oben
+Ressourcenverbrauch/Gewinn für nächsten Tick anzeigen
+Einstellbares "Hybrid-Ticksystem", mit manuellen Fortschreiten oder Zeitbedingt, je nachdem was als erstes eintritt
+
+Jobs:
 * Bauaufträge
   * Building
   * Ressourcen
@@ -50,3 +62,10 @@ Ereignis:
 * Pannen und Unfälle
 
 
+Milestones:
+
+1. Prototype mit Demo Auftrag der tickt und Aufträge an Server einreichen
+2. Settlement Map mit unterschiedlichen Hexagon "Typen"
+3. Population die wächst, altert und stirbt und Arbeit bereitstellt
+4. Basis Aufträge die erfüllt werden
+5. Ticklogiken (Abgabe, Zeit, Hybrid)
