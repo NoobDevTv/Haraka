@@ -1,0 +1,17 @@
+.command-sidebar {
+  right: 0;
+  top: 0;
+  position: fixed;
+  background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+  height: 100%;
+
+  .job {
+    &.container {
+      height: 10px;
+    }
+
+    .execute {
+      margin-top: 4em;
+    }
+  }
+}

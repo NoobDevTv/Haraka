@@ -17,9 +17,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Haraka.WebApp", "Haraka.Web
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haraka.Runtime.Test", "Haraka.Runtime.Test\Haraka.Runtime.Test.csproj", "{FD507809-7B1D-496F-920F-524546CB925C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haraka.WebApp.Shared.Test", "Haraka.WebApp.Shared.Test\Haraka.WebApp.Shared.Test.csproj", "{81BE66EA-A440-4207-80FC-CA7ABD6C2949}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haraka.WebApp.Shared.Test", "Haraka.WebApp.Shared.Test\Haraka.WebApp.Shared.Test.csproj", "{81BE66EA-A440-4207-80FC-CA7ABD6C2949}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopulationCalc", "PopulationCalc\PopulationCalc.csproj", "{0F6CBC01-13F2-4A56-AD09-839FE12C6A9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PopulationCalc", "PopulationCalc\PopulationCalc.csproj", "{0F6CBC01-13F2-4A56-AD09-839FE12C6A9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

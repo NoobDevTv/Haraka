@@ -22,7 +22,9 @@ namespace PopulationCalc
 
             bool Chance(float chance)
                 => rand.Next(0, 101) / 100f <= chance;
-            using var fs = File.OpenWrite(Path.Combine(".", "test.csv"));
+            var path = Path.Combine(".", "test.csv");
+            File.Delete(path);
+            using var fs = File.OpenWrite(path);
             using var writer = new StreamWriter(fs);
             writer.WriteLine($"Tick,Jahr,Frauen,Männer,Tote,Geburten");
             var newList = new List<Villager>();

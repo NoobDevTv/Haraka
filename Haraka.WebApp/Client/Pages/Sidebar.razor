@@ -1,0 +1,21 @@
+﻿<div id="command-sidebar" class="command-sidebar">
+    <div class="job container inactive">
+        <button type="button" @onclick="@CreateJobAsync" class="execute btn btn-dark">Klick mich!</button>
+
+    </div>
+</div>
+
+@using System.Net.Http
+@using Haraka.WebApp.Shared.Information
+@inject HttpClient Http
+
+@code {
+
+    public int HexId { get; set; }
+
+    private async Task CreateJobAsync(MouseEventArgs value)
+    {
+        var addItem = new JobInfo { HexagonId = HexId, JobType = "Demo" };
+        await Http.PostAsJsonAsync("api/job/create", addItem);
+    }
+}

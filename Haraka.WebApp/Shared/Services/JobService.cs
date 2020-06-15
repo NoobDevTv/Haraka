@@ -10,22 +10,22 @@ namespace Haraka.WebApp.Shared.Services
     {
         public bool TryCreate(JobInfo job)
         {
-
+            return true;
         }
 
-        public JobInfo TryRead(int id)
-        {
+        //public JobInfo TryRead(int id)
+        //{
 
-        }
+        //}
 
-        public bool Update(JobInfo job)
-        {
+        //public bool Update(JobInfo job)
+        //{
 
-        }
+        //}
 
-        public bool TryRemove(JobInfo job)
-        {
+        //public bool TryRemove(JobInfo job)
+        //{
 
-        }
+        //}
     }
 }
