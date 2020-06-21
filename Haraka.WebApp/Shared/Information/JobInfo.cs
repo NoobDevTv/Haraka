@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Haraka.Runtime.Jobs;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,5 +13,9 @@ namespace Haraka.WebApp.Shared.Information
         
         public string JobType { get; set; }
 
+        internal Job ToJob()
+        {
+            return new DemoCountJob(HexagonId);
+        }
     }
 }

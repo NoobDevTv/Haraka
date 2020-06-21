@@ -1,21 +1,36 @@
 ﻿<div id="command-sidebar" class="command-sidebar">
     <div class="job container inactive">
+        <div class="@(HexId < 1 ? "d-none" : "") text-light">@HexId</div>
         <button type="button" @onclick="@CreateJobAsync" class="execute btn btn-dark">Klick mich!</button>
-
     </div>
 </div>
 
 @using System.Net.Http
 @using Haraka.WebApp.Shared.Information
 @inject HttpClient Http
+@inject IJSRuntime jsRuntime
 
 @code {
-
-    public int HexId { get; set; }
-
-    private async Task CreateJobAsync(MouseEventArgs value)
+    public int HexId
     {
+        get => hexId; set
+        {
+            hexId = value;
+            StateHasChanged();
+        }
+    }
+
+    private int hexId;
+
+    private async Task CreateJobAsync()
+    {
+        if (HexId < 1)
+            return;
+
         var addItem = new JobInfo { HexagonId = HexId, JobType = "Demo" };
         await Http.PostAsJsonAsync("api/job/create", addItem);
+        await jsRuntime.InvokeVoidAsync("localStorage.setItem", "token", "abe73434erbedfzer");
+        var token = await jsRuntime.InvokeAsync<string>("localStorage.getItem", "token");
     }
+
 }

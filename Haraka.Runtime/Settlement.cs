@@ -26,7 +26,7 @@ namespace Haraka.Runtime
 
         internal void SimulateTick(DayTime dayTime)
         {
-            foreach (var job in Jobs)
+            foreach (var job in Jobs.ToArray())
             {
                 job.Execute(this);
             }

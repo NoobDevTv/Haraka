@@ -9,17 +9,25 @@ namespace Haraka.WebApp.Shared.Services
 {
     public sealed class GameService
     {
+        private readonly Game game;
+        public GameService()
+        {
+            game = new Game();
+            DataService.InsertGame(game);
+        }
+
         public GameInfo Create(GameInfo gameInfo)
         {
-            using DatabaseContext context = null;
-           
-            var gameTable = context.Set<Game>();
-            var game = gameInfo.ToGame();
-            gameTable.Add(game);
-            DataService.InsertGame(game);
+            //using DatabaseContext context = null;
 
-            context.SaveChanges();
-            return GameInfo.FromGame(game);
+            //var gameTable = context.Set<Game>();
+            //var game = gameInfo.ToGame();
+            //gameTable.Add(game);
+            //DataService.InsertGame(game);
+
+            //context.SaveChanges();
+            //return GameInfo.FromGame(game);
+            throw new NotImplementedException();
         }
 
         public bool JoinGame(int id)
@@ -46,5 +54,8 @@ namespace Haraka.WebApp.Shared.Services
         {
             throw new NotImplementedException();
         }
+
+        public Game GetCurrentDemoGame()
+            => game;
     }
 }

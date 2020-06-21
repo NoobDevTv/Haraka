@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
 using Haraka.WebApp.Shared.Services;
+using System;
+using Haraka.Runtime;
 
 namespace Haraka.WebApp.Server
 {
@@ -15,6 +17,7 @@ namespace Haraka.WebApp.Server
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            
         }
 
         public IConfiguration Configuration { get; }
@@ -25,6 +28,9 @@ namespace Haraka.WebApp.Server
         {
             services.AddControllersWithViews();
             services.AddSingleton(typeof(JobService));
+            services.AddSingleton(typeof(GameService));
+            var subscription = GameProvider.Create();
+            services.AddSingleton(typeof(IDisposable), subscription);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,5 +63,7 @@ namespace Haraka.WebApp.Server
                 endpoints.MapFallbackToFile("index.html");
             });
         }
+
+
     }
 }

@@ -1,90 +1,93 @@
 ﻿@page "/"
 
 <style>
-      .hex {
-          position: relative;
-          width: 104px;
-          height: 60px;
-          background-color: #00ff00;
-          margin-left: 3px;
-          margin-top: 33px;
-          float: left;
-      }
+    .hex {
+        position: relative;
+        width: 104px;
+        height: 60px;
+        background-color: #00ff00;
+        margin-left: 3px;
+        margin-top: 33px;
+        float: left;
+    }
 
-          .hex:before,
-          .hex:after {
-              content: "";
-              position: absolute;
-              width: 0;
-              border-left: 52px solid transparent;
-              border-right: 52px solid transparent;
-          }
+        .hex:before,
+        .hex:after {
+            content: "";
+            position: absolute;
+            width: 0;
+            border-left: 52px solid transparent;
+            border-right: 52px solid transparent;
+        }
 
-          .hex:before {
-              bottom: 100%;
-              border-bottom: 30px solid #00ff00;
-          }
+        .hex:before {
+            bottom: 100%;
+            border-bottom: 30px solid #00ff00;
+        }
 
-          .hex:after {
-              top: 100%;
-              width: 0;
-              border-top: 30px solid #00ff00;
-          }
+        .hex:after {
+            top: 100%;
+            width: 0;
+            border-top: 30px solid #00ff00;
+        }
 
-      /* .hexcontainer {
+    /* .hexcontainer {
       transform: perspective(600px) rotateX(60deg);
     } */
 
-      .hex-container {
-          display: grid;
-      }
+    .hex-container {
+        display: grid;
+    }
 
-      .hex-row {
-          clear: left;
-          grid-template-columns: 100px 100px 100px 100px;
-          grid-template-rows: 60px 60px 60px 60px;
-      }
+    .hex-row {
+        clear: left;
+        grid-template-columns: 100px 100px 100px 100px;
+        grid-template-rows: 60px 60px 60px 60px;
+    }
 
-          .hex-row.even {
-              margin-left: 54px;
-          }
+        .hex-row.even {
+            margin-left: 54px;
+        }
 
-      .street {
-          position: relative;
-          background-color: brown;
-          z-index: -1;
-      }
+    .street {
+        position: relative;
+        background-color: brown;
+        z-index: -1;
+    }
 
-          .street .bottom-left,
-          .street .top-right {
-              transform: rotateZ(30deg);
-              height: 35px;
-              width: 60px;
-          }
+        .street .bottom-left,
+        .street .top-right {
+            transform: rotateZ(30deg);
+            height: 35px;
+            width: 60px;
+        }
 
-          .street .bottom-left {
-              right: 5px;
-              top: 59px;
-          }
+        .street .bottom-left {
+            right: 5px;
+            top: 59px;
+        }
 </style>
 <h3 class="text-light">SimpleMap</h3>
-
 <div class="hex-container">
     <div class="hex-row">
-        <div class="hex"></div>
-        <div class="hex"></div>
-        <div class="hex"></div>
+        @for (int i = 0; i < 3; i++)
+        {
+            var id = i + 10;
+            <div id="@id" class="hex" @onclick="@(() => SetHexagonIdOnSidebar(id))"></div>
+        }
     </div>
     <div class="hex-row even">
-        <div class="hex">
-            <div class="street bottom-left"></div>
-        </div>
-        <div class="hex"></div>
+        @for (int i = 0; i < 2; i++)
+        {
+            var id = i + 20;
+            <div id="@id" class="hex" @onclick="@(() => SetHexagonIdOnSidebar(id))"></div>
+        }
     </div>
     <div class="hex-row">
         @for (int i = 0; i < 3; i++)
         {
-            <div class="hex"></div>
+            var id = i + 30;
+            <div id="@id" class="hex" @onclick="@(() => SetHexagonIdOnSidebar(id))"></div>
         }
     </div>
 </div>
@@ -93,8 +96,9 @@
 
 @code {
     private Sidebar sidebar;
-    public void Test()
+    public void SetHexagonIdOnSidebar(int id)
     {
-        sidebar.HexId = 12;
+        sidebar.HexId = id;
+        
     }
 }
