@@ -9,6 +9,8 @@ using System.Linq;
 using Haraka.WebApp.Shared.Services;
 using System;
 using Haraka.Runtime;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Haraka.WebApp.Server
 {
@@ -31,6 +33,37 @@ namespace Haraka.WebApp.Server
             services.AddSingleton(typeof(GameService));
             var subscription = GameProvider.Create();
             services.AddSingleton(typeof(IDisposable), subscription);
+
+            var sessionService = new UserSessionService($"{nameof(Haraka)}.{nameof(Server)}.JWT");
+            sessionService.LoadOrCreateKey();
+
+            services
+                .AddAuthentication(auth =>
+                {
+                    auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(jwt =>
+                {
+                    jwt.SaveToken = true;
+                    jwt.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidateAudience = false,
+                        IssuerSigningKey = sessionService.Key,
+                        ValidIssuer = sessionService.Issuer
+
+                    };
+                    jwt.SecurityTokenValidators.Clear();
+                    jwt.SecurityTokenValidators.Add(sessionService);
+
+#if DEBUG
+                    jwt.RequireHttpsMetadata = false;
+#endif
+                });
+
+            services.AddSingleton<IUserSessionService>(sessionService);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +89,9 @@ namespace Haraka.WebApp.Server
             });
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

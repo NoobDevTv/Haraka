@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Text;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Haraka.WebApp.Client.Services;
 
 namespace Haraka.WebApp.Client
 {
@@ -16,6 +17,7 @@ namespace Haraka.WebApp.Client
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            builder.Services.AddSingleton<AuthenticationService>();
 
             await builder.Build().RunAsync();
         }

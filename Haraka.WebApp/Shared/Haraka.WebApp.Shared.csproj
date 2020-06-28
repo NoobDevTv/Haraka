@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.7.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Haraka.Core\Haraka.Core.csproj" />
     <ProjectReference Include="..\..\Haraka.Runtime\Haraka.Runtime.csproj" />
   </ItemGroup>
