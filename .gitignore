@@ -340,3 +340,4 @@ ASALocalRun/
 healthchecksdb
 /hexagon-pack.zip
 /hexagon-pack
+*.key
