@@ -3,6 +3,7 @@ using Microsoft.JSInterop;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -27,25 +28,45 @@ namespace Haraka.WebApp.Client.Services
             jsRuntime = runtime;
         }
 
-        public async Task Login(string user)
+        public async Task<bool> ValidateToken()
         {
+            Debug.WriteLine("Get token");
             var token = await jsRuntime.InvokeAsync<string>("localStorage.getItem", "token");
-
-            if (string.IsNullOrWhiteSpace(token))
-            {
-                using HttpResponseMessage response = await httpClient
-                    .PostAsJsonAsync(controllerName + "login", new LoginInfo { Username = user });
-
-                token = await response.Content.ReadAsStringAsync();
-                await jsRuntime.InvokeVoidAsync("localStorage.setItem", "token", token);
-            }
-
             httpClient.DefaultRequestHeaders.Remove("Authorization");
             httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+
+            Debug.WriteLine("validate token");
             using HttpResponseMessage testResponse = await httpClient.GetAsync(controllerName + "test");
 
-            IsAuthenticated = true;
+            if (testResponse.IsSuccessStatusCode)
+            {
+                Debug.WriteLine($"validate successfull");
+                return IsAuthenticated = true;
+            }
 
+            Debug.WriteLine($"Exception on validate");
+            await jsRuntime.InvokeAsync<string>("localStorage.removeItem", "token");
+            IsAuthenticated = false;
+            return false;
+        }
+
+        public async Task Login(string user)
+        {
+            if (IsAuthenticated || await ValidateToken())
+                return;
+
+            Debug.WriteLine("User is not authenticated");
+
+            using HttpResponseMessage response = await httpClient
+                .PostAsJsonAsync(controllerName + "login", new LoginInfo { Username = user });
+
+            Debug.WriteLine("Get is not authenticated");
+            var token = await response.Content.ReadAsStringAsync();
+            Debug.WriteLine("Set token and username");
+            await jsRuntime.InvokeVoidAsync("localStorage.setItem", "token", token);
+            await jsRuntime.InvokeVoidAsync("localStorage.setItem", "username", user);
+
+            await ValidateToken();
         }
     }
 }

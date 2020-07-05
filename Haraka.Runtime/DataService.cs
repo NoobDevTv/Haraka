@@ -19,5 +19,6 @@ namespace Haraka.Runtime
 
         public static IObservable<Game> GetGames()
             => gameSubject;
+
     }
 }

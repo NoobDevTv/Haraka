@@ -1,4 +1,4 @@
-<Router AppAssembly="@typeof(Program).Assembly">
+﻿<Router AppAssembly="@typeof(Program).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
     </Found>
@@ -8,4 +8,28 @@
         </LayoutView>
     </NotFound>
 </Router>
+@using System.Net.Http
+@using Haraka.WebApp.Shared.Information
+@using Haraka.WebApp.Client.Services
+@inject AuthenticationService authService
+@inject IJSRuntime jsRuntime
 
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await Login();
+
+        base.OnInitialized();
+    }
+
+    private async Task Login()
+    {
+        System.Diagnostics.Debug.WriteLine("call login");
+
+        if (authService is null)
+            System.Diagnostics.Debug.WriteLine("💣");
+
+        await authService.Login("Demo");
+    }
+
+}

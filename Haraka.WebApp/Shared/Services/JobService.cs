@@ -16,13 +16,11 @@ namespace Haraka.WebApp.Shared.Services
             this.gameService = gameService;
         }
 
-        public bool TryCreate(JobInfo jobInfo)
+        public bool TryCreate(JobInfo jobInfo, Player player)
         {
             var game = gameService.GetCurrentDemoGame();
-            game
-                .World
-                .Players
-                .FirstOrDefault()?
+            //var player = DataService.GetPlayerByName();
+            player
                 .Settlements
                 .FirstOrDefault()?
                 .Jobs
