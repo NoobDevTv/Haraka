@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Haraka.Model.Entities;
 using Haraka.Runtime;
 using Haraka.WebApp.Shared.Information;
 using Haraka.WebApp.Shared.Model;

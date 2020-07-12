@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Haraka.SQLite\Haraka.SQLite.csproj" />
     <ProjectReference Include="..\Client\Haraka.WebApp.Client.csproj" />
     <ProjectReference Include="..\Shared\Haraka.WebApp.Shared.csproj" />
   </ItemGroup>

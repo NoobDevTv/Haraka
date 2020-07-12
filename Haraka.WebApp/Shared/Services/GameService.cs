@@ -1,4 +1,5 @@
-﻿using Haraka.Runtime;
+﻿using Haraka.Model.Entities;
+using Haraka.Runtime;
 using Haraka.WebApp.Shared.Information;
 using Microsoft.EntityFrameworkCore;
 using System;

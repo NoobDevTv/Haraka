@@ -11,6 +11,14 @@ using System;
 using Haraka.Runtime;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Haraka.Core;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using Haraka.Core.IoC;
+using Haraka.WebApp.Shared;
+using System.Collections;
+using System.Reflection;
+using Microsoft.AspNetCore.Mvc;
+using Haraka.Model;
 
 namespace Haraka.WebApp.Server
 {
@@ -28,14 +36,24 @@ namespace Haraka.WebApp.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+
+            var typeContainer = TypeContainer.Get<ITypeContainer>();
+            SQLite.SqliteStartup.Register(typeContainer);
+            RegisterController(typeContainer);
+            typeContainer.Register<IControllerActivator, CustomControllerActivator>(InstanceBehaviour.Singleton);
+
             services.AddControllersWithViews();
-            services.AddSingleton(typeof(JobService));
-            services.AddSingleton(typeof(GameService));
-            var subscription = GameProvider.Create();
-            services.AddSingleton(typeof(IDisposable), subscription);
+            services.AddSingleton(typeContainer.Get<IControllerActivator>());
+
+            typeContainer.Register<JobService>(InstanceBehaviour.Singleton);
+            typeContainer.Register<GameService>(InstanceBehaviour.Singleton);
+            typeContainer.Register(typeof(GameProvider), typeof(GameProvider), GameProvider.Create());
 
             var sessionService = new UserSessionService($"{nameof(Haraka)}.{nameof(Server)}.JWT");
+            typeContainer.Register<IUserSessionService>(sessionService);
+            
             sessionService.LoadOrCreateKey();
+            typeContainer.Get<IDbProvider>().RegisterDatabase("main.db", typeContainer);
 
             services
                 .AddAuthentication(auth =>
@@ -62,8 +80,6 @@ namespace Haraka.WebApp.Server
                     jwt.RequireHttpsMetadata = false;
 #endif
                 });
-
-            services.AddSingleton<IUserSessionService>(sessionService);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -92,7 +108,6 @@ namespace Haraka.WebApp.Server
 
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
@@ -100,6 +115,13 @@ namespace Haraka.WebApp.Server
             });
         }
 
-
+        public void RegisterController(ITypeContainer typeContainer)
+        {
+            Assembly
+                .GetAssembly(typeof(Startup))
+                .GetTypes()
+                .Where(t => t.GetCustomAttribute<RouteAttribute>() != null)
+                .ForEach(t => typeContainer.Register(t, t, InstanceBehaviour.Instance));
+        }
     }
 }
