@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Haraka.Model.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 

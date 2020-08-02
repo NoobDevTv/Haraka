@@ -1,5 +1,6 @@
-﻿using Haraka.Runtime.Jobs;
-using Haraka.Runtime.Resources;
+﻿using Haraka.Core;
+using Haraka.Model.Entities;
+using Haraka.Runtime.Jobs;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;

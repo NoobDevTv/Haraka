@@ -1,4 +1,4 @@
-﻿namespace Haraka.Runtime
+﻿namespace Haraka.Core
 {
     public enum Gender
     {

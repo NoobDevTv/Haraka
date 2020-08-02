@@ -1,20 +1,22 @@
-﻿using Haraka.Runtime.Jobs;
-using Haraka.Runtime.Resources;
+﻿using Haraka.Core;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Haraka.Runtime
+namespace Haraka.Model.Entities
 {
-    public class Settlement
+    public class Settlement : IdEntity<int>
     {
         public string Name { get; set; }
-        public SettlementMap Map { get; set; }
+        public virtual SettlementMap Map { get; set; }
         public int MaxVillagers { get; set; }
 
-        public List<Villager> Villagers { get; }
+        public virtual List<Villager> Villagers { get; }
 
-        public List<Job> Jobs { get;  }
+        [NotMapped]
+        public virtual List<Job> Jobs { get;  }
 
+        [NotMapped]
         public Dictionary<ResourceDefinition, int> StockPile { get; }
 
         public Settlement()
@@ -24,7 +26,7 @@ namespace Haraka.Runtime
             StockPile = new Dictionary<ResourceDefinition, int>();
         }
 
-        internal void SimulateTick(DayTime dayTime)
+        public void SimulateTick(DayTime dayTime)
         {
             foreach (var job in Jobs.ToArray())
             {
@@ -32,7 +34,7 @@ namespace Haraka.Runtime
             }
         }
 
-        internal void AddResource(ResourceDefinition resourceDefinition, int sum)
+        public void AddResource(ResourceDefinition resourceDefinition, int sum)
         {
             if (StockPile.ContainsKey(resourceDefinition))
                 StockPile[resourceDefinition] += sum;
@@ -40,7 +42,7 @@ namespace Haraka.Runtime
                 StockPile.Add(resourceDefinition, sum);
         }
 
-        internal void AddJobs(params Job[] jobs)
+        public void AddJobs(params Job[] jobs)
         {
             Jobs.AddRange(jobs);
         }

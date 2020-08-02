@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Haraka.Runtime.Resources
+namespace Haraka.Core
 {
     public readonly struct ResourceDefinition : IEquatable<ResourceDefinition>
     {     

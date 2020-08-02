@@ -3,13 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Haraka.Runtime
+namespace Haraka.Model.Entities
 {
-    public class Game : IdEntity
+    public class Game : IdEntity<int>
     {
-        public World World { get; set; }
+        public virtual World World { get; set; }
         public TimeSpan TickTime { get; set; }
-        public Player Owner { get; set; }
+        public virtual Player Owner { get; set; }
 
         public Game()
         {

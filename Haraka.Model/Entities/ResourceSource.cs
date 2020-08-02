@@ -1,23 +1,30 @@
-﻿using System;
+﻿using Haraka.Core;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace Haraka.Runtime.Resources
+namespace Haraka.Model.Entities
 {
-    public class ResourceSource
+    public class ResourceSource : IdEntity<int>
     {
+        [NotMapped]
         public ResourceDefinition ResourceDefinition { get; set; }
 
         public int Amount { get; set; }
         public bool IsEmpty => Amount < 1;
 
+        public ResourceSource()
+        {
+
+        }
         public ResourceSource(ResourceDefinition resourceDefinition, int amount)
         {
             ResourceDefinition = resourceDefinition;
             Amount = amount;
         }
 
-        internal int Collect(Villager villager, int maxValue)
+        public int Collect(Villager villager, int maxValue)
         {
             var collect = villager.GetResourceFactor(ResourceDefinition) * ResourceDefinition.CollectAmountBase;
 

@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Haraka.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Haraka.Runtime
+namespace Haraka.Model.Entities
 {
-    public class Player
+    public class Player : IdEntity<int>
     {
-        public List<Settlement> Settlements { get; }
+        public virtual List<Settlement> Settlements { get; }
 
         public Player()
         {

@@ -3,14 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Haraka.Runtime.Jobs
+namespace Haraka.Model.Entities
 {
-    public abstract class Job : IdEntity
+    public abstract class Job : IdEntity<int>
     {
         public int MaxVillagers { get; set; }
         public bool Permanent { get; protected set; }
 
-        public List<Villager> AssignedVillagers { get;  }
+        public virtual List<Villager> AssignedVillagers { get;  }
 
         public int Tick { get; set; }
 

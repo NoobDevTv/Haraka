@@ -1,14 +1,21 @@
-﻿using System;
+﻿using Haraka.Core;
+using Haraka.Model;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Haraka.Runtime
+namespace Haraka.Model.Entities
 {
-    public sealed class World
+    public  class World : IdEntity<int>
     {
-        public List<Player> Players { get;  }
-        public Map Map { get;  }
+        public virtual List<Player> Players { get;  }
+        public virtual Map Map { get;  }
         public DayTime DayTime { get; set; }
+
+        public World()
+        {
+
+        }
 
         public World(Map map)
         {
@@ -16,7 +23,7 @@ namespace Haraka.Runtime
             Map = map;
         }
 
-        internal void SimulateTick(long tick)
+        public void SimulateTick(long tick)
         {
             DayTime = (DayTime)((int)(DayTime + 1) % 6);
             foreach (var player in Players)
